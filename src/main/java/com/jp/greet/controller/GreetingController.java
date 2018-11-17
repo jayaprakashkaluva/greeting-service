@@ -18,7 +18,7 @@ public class GreetingController {
 	
 	@GetMapping("/greet/{name}")
 	public String greeat(@PathVariable final String name) {
-		System.out.println("---in controller--");
+		log.info("----------in controller---------");
 		return greetingManager.greet(name);
 	}
 }
