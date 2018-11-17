@@ -1,0 +1,11 @@
+version: "2.0"
+services:
+  greeting-service:
+    image: jayaprakashkaluva/docker:latest
+    ports:
+      - "8080:8080"
+  greeting-client:
+    image: jayaprakashkaluva/greeting-service:latest
+    ports:
+      - "8082:8082"
+    
