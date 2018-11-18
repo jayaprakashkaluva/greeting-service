@@ -3,9 +3,25 @@ services:
   greeting-service:
     image: jayaprakashkaluva/docker:latest
     ports:
-      - "8080:8080"
+      - 8080
+    networks:
+      - jp-net
   greeting-client:
     image: jayaprakashkaluva/greeting-service:latest
     ports:
-      - "8082:8082"
-    
+      - 8082
+    networks:
+      - jp-net
+  lb:
+    image: dockercloud/haproxy
+    ports:
+      - 80:80
+    links:
+      - greeting-client
+    networks:
+      - jp-net
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock 
+networks:
+  jp-net:
+    driver: bridge
